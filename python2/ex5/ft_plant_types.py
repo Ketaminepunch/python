@@ -6,7 +6,7 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/02 00:18:13 by vsack             #+#    #+#              #
-#    Updated: 2026/05/02 01:01:28 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/02 01:27:20 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,15 +30,15 @@ class Plant:
 		else:
 			print(f"{self._name}: Error, height can't be negative")
 
-	def grow(self, increment: float) -> None:
+	def grow(self, increment: float, days: int) -> None:
 		if increment > 0:
-			self._height += increment
-			print(f"{self._name} grew to {self._height}cm")
+			self._height += increment * days
+			self._age += days
 		else:
 			print("Growth increment must be positive")
 
 	def show(self) -> None:
-			print(f"{self._name}: {self._height}cm, {self._age} days old")
+			print(f"{self._name}: {self._height:.1f}cm, {self._age} days old")
 
 
 class Flower(Plant):
@@ -76,13 +76,25 @@ class Vegetable(Plant):
 	def __init__(self, name: str, age: int, height: float, harvest_season: str, nutrition: int) -> None:
 		super().__init__(name, age, height)
 		self._season = harvest_season
-		self.nutrition = nutrition
+		self._nutrition = nutrition
+
+	def grow(self, increment: float, days: int) -> None:
+		super().grow(increment, days)
+		self._nutrition += 10
+
+	def age(self) -> None:
+		self._age += 1
+		self._nutrition += 10
+
+	def show(self) -> None:
+		super().show()
+		print(f"Harvest Season: {self._season}")
+		print(f"Nutritional Value: {self._nutrition}")
 
 
 if __name__ == "__main__":
 	print("=== Specialized Garden System ===")
 
-    # Instantiation
 	rose = Flower("Rose", 5, 15.2, "Red")
 	print("=== Flower")
 	rose.show()
@@ -94,3 +106,13 @@ if __name__ == "__main__":
 	print("=== Tree")
 	oak.show()
 	oak.shade()
+
+	days = 12
+	growthIncre = 5.2
+	tomato = Vegetable("Tomato", 1, 4.4, "april", 0)
+	print("=== Vegetable")
+	tomato.show()
+	print(
+		f"Growing tomato for {days} days and its growing by {growthIncre}cm per day")
+	tomato.grow(growthIncre, days)
+	tomato.show()
