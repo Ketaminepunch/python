@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    ft_garden_analytics.py                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
+#    By: tino <tino@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/02 01:44:24 by vsack             #+#    #+#              #
-#    Updated: 2026/05/02 01:52:35 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/03 13:39:13 by tino             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,9 @@ class Flower(Plant):
 	def bloom(self) -> None:
 		self._blooming = True
 
+	def grow(self, increment: float, days: int):
+		super().grow()
+
 	def show(self) -> None:
 		super().show()
 		print(f"Color: {self._color}")
@@ -106,7 +109,33 @@ class Seed(Flower):
 		super().__init__(name, age, height, color)
 		self._seeds = 0
 
+
 	def bloom(self):
 		super().bloom()
 		if self._blooming:
 			self._seeds = round(self._height * 0.8)
+	def grow(self, increment: float, days: int)-> None:
+		super().grow()
+
+	def show(self)->None:
+		super().show()
+		if self._blooming:
+			print(f"Total Seeds: {self._seeds}")
+		else :
+			print(f"Seed Status: Growing (Flower must bloom)")
+
+	@staticmethod
+	def seed_potential(height:float)->int:
+		return round(height*0.8)
+if __name__ == "__main__":
+	print("=== Seed Lifecycle Simulation ===")
+	sunflower_seed = Seed("Sunflower", 1, 120.4, "Yellow")
+
+	print("\n--- Pre-Bloom State ---")
+	sunflower_seed.show()
+
+	print("\n--- Triggering Bloom ---")
+	sunflower_seed.bloom()
+
+	print("\n--- Post-Bloom State ---")
+	sunflower_seed.show()
