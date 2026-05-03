@@ -6,7 +6,7 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/02 00:18:13 by vsack             #+#    #+#              #
-#    Updated: 2026/05/02 01:27:20 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/03 16:01:58 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,12 +30,15 @@ class Plant:
 		else:
 			print(f"{self._name}: Error, height can't be negative")
 
-	def grow(self, increment: float, days: int) -> None:
+	def grow(self, increment: float) -> None:
 		if increment > 0:
-			self._height += increment * days
-			self._age += days
+			self._height += increment
+
 		else:
 			print("Growth increment must be positive")
+
+	def age(self, days: int) -> None:
+		self._age += days
 
 	def show(self) -> None:
 			print(f"{self._name}: {self._height:.1f}cm, {self._age} days old")
@@ -78,13 +81,13 @@ class Vegetable(Plant):
 		self._season = harvest_season
 		self._nutrition = nutrition
 
-	def grow(self, increment: float, days: int) -> None:
-		super().grow(increment, days)
+	def grow(self, increment: float) -> None:
+		super().grow(increment)
 		self._nutrition += 10
 
-	def age(self) -> None:
-		self._age += 1
-		self._nutrition += 10
+	def age(self, days: int) -> None:
+		super().age(days)
+		self._nutrition += 10 * days
 
 	def show(self) -> None:
 		super().show()
@@ -114,5 +117,5 @@ if __name__ == "__main__":
 	tomato.show()
 	print(
 		f"Growing tomato for {days} days and its growing by {growthIncre}cm per day")
-	tomato.grow(growthIncre, days)
+	tomato.grow(growthIncre)
 	tomato.show()
