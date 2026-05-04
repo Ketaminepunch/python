@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    ft_command_quest.py                                :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tino <tino@student.42.fr>                  +#+  +:+       +#+         #
+#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/03 21:59:45 by vsack             #+#    #+#              #
-#    Updated: 2026/05/04 01:03:00 by tino             ###   ########.fr        #
+#    Updated: 2026/05/04 17:13:03 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import sys
 
 
-def main()->None:
+def main() -> None:
 	print("=== Command Quest ===")
 	print("Program Name:", sys.argv[0])
 	i = 1

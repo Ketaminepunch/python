@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_ancient_text.py                                 :+:      :+:    :+:    #
+#    ft_archive_creation.py                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/04 17:27:29 by vsack             #+#    #+#              #
-#    Updated: 2026/05/04 18:44:10 by vsack            ###   ########.fr        #
+#    Created: 2026/05/04 17:42:27 by vsack             #+#    #+#              #
+#    Updated: 2026/05/04 18:58:27 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,29 @@ def main() -> None:
 		return
 	filename: str = sys.argv[1]
 	try:
-		with open(file=filename, mode="r") as file:
+		with open(filename, mode="r") as file:
 			content: str = file.read()
 			print("=== Cyber Archive Recovery ===")
 			print(f"Accessing file '{filename}\n---\n")
 			print(content)
-			print(f"\n---\nFile '{filename}' closed")
+			print(f"\n---\nFile '{filename}' closed\n")
+		new_content: str = content.replace("\n", "#\n")
+		if content and not content.endswith("\n"):
+			new_content += "#"
+		print("Transform Data:\n---\n")
+		print(new_content)
+		print("\n---")
+		new_name: str = input("Enter file name (or empty):")
+		if new_name == "":
+			print("Not saving data.")
+		else:
+			try:
+				with open(new_name, "w")as out_file:
+					out_file.write(new_content)
+				print(f"Saving data to '{new_name}'\nData saved in file '{new_name}'")
+			except PermissionError as e:
+				print(f"Error opening file '{filename}': {e}")
+
 	except FileNotFoundError as e:
 		print(f"Error opening file '{filename}': {e}")
 	except PermissionError as e:
