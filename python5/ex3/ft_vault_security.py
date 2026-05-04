@@ -1,7 +1,19 @@
-from typing import Tuple, Optional
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    ft_vault_security.py                               :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/05/04 21:43:46 by vsack             #+#    #+#              #
+#    Updated: 2026/05/04 21:44:27 by vsack            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+import typing
 
 
-def secure_archive(filename: str, action: str = "read", content: Optional[str] = None) -> Tuple[bool, str]:
+def secure_archive(filename: str, action: str = "read", content: typing.Optional[str] = None) -> typing.Tuple[bool, str]:
 
 	try:
 		if action == "read":

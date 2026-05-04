@@ -6,16 +6,15 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 18:59:58 by vsack             #+#    #+#              #
-#    Updated: 2026/05/04 19:00:01 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/04 21:43:30 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import random
 import typing
-from typing import Generator
 
 
-def gen_event() -> Generator:
+def gen_event() -> typing.Generator:
 	players = ["Tom", "Jerry", "Sam", "Clade", "Aurora"]
 	actions = ["connected", "disconnected",
 		"leveled up", "found a legendary item", "died"]
@@ -26,7 +25,7 @@ def gen_event() -> Generator:
 		yield (name, action)
 
 
-def consume_event(even_list: list) -> Generator:
+def consume_event(even_list: list) -> typing.Generator:
 	while len(even_list) > 0:
 		idx = random.randrange(len(even_list))
 		item = even_list[idx]

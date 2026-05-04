@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    data_processor.py                                  :+:      :+:    :+:    #
+#    data_pipeline.py                                   :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/04 19:59:28 by vsack             #+#    #+#              #
-#    Updated: 2026/05/04 22:53:13 by vsack            ###   ########.fr        #
+#    Created: 2026/05/04 22:54:42 by vsack             #+#    #+#              #
+#    Updated: 2026/05/04 23:00:02 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,55 +104,35 @@ class LogProcessor(DataProcessor):
 				self._storage.append(formatted_str)
 
 
-if __name__ == "__main__":
-	print("=== Code Nexus Data Processor ===")
+class DataStream:
+	def __init__(self) -> None:
+		self.procs_reg: list[DataProcessor] = []
 
-	print("\nTesting Numeric Processor...")
-	num_proc = NumericProcessor()
+	def register_processor(self, proc: DataProcessor) -> None:
+		self.procs_reg.append(proc)
 
-	print(f" Trying to validate input '42' (string): {num_proc.validate('42')}")
-	print(f" Trying to validate input 'Hello': {num_proc.validate('Hello')}")
+	def process_stream(self, stream: list[typing.Any]) -> None:
+		for item in stream:
+			processor_found = False
+			for processor in self.procs_reg:
+				if processor.validate(item):
+					processor.ingest(item)
+					processor_found = True
+					break
+			if not processor_found:
+				print(f"DataStream error: Can't process element in stream: {item}")
 
-	print(" Test invalid ingestion of string 'foo' without prior validation:")
-	try:
-		num_proc.ingest("foo")  # ty:ignore[invalid-argument-type]
-	except TypeError as e:
-		print(f" Got exception: {e}")
+	def print_processor_stats(self) -> None:
+		print("=== DataStream statistics ===")
+		if not self.procs_reg:
+			print("No processor found, no data")
+			return
+		for proc in self.procs_reg:
+			name = type(proc).__name__.replace("Processor", " Processor")
+			remaining = len(proc._storage)
+			total = remaining + proc._rank
+			print(f"{name}: total {total} items processed, remaining {remaining} on processor")
 
-	print(" Processing data: [1, 2, 3, 4, 5]")
-	num_proc.ingest([1, 2, 3, 4, 5])
 
-	print(" Extracting 3 values...")
-	for _ in range(3):
-		rank, val = num_proc.output()
-		print(f" Numeric value {rank}: {val}")
-
-	print("\nTesting Text Processor...")
-	text_proc = TextProcessor()
-
-	print(f" Trying to validate input '42' (int): {text_proc.validate(42)}")
-
-	print(" Processing data: ['Hello', 'Nexus', 'World']")
-	text_proc.ingest(['Hello', 'Nexus', 'World'])
-
-	print(" Extracting 1 value...")
-	rank, val = text_proc.output()
-	print(f" Text value {rank}: {val}")
-
-	print("\nTesting Log Processor...")
-	log_proc = LogProcessor()
-
-	print(f" Trying to validate input 'Hello': {log_proc.validate('Hello')}")
-
-	log_data = [
-		{'log_level': 'NOTICE', 'log_message': 'Connection to server'},
-		{'log_level': 'ERROR', 'log_message': 'Unauthorized access!!!'}
-	]
-	print(f" Processing data: {log_data}")
-	log_proc.ingest(log_data)
-
-	print(" Extracting 2 values...")
-	for _ in range(2):
-		rank, val = log_proc.output()
-		print(f" Log entry {rank}: {val}")
-	print("\n=== All tests complete ===")
+class ExportPlugin(typing.Protocol):
+	def process_output(self, data: list[tuple[int, str]]) -> None:

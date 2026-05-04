@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    data_processor.py                                  :+:      :+:    :+:    #
+#    data_stream.py                                     :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/04 19:59:28 by vsack             #+#    #+#              #
-#    Updated: 2026/05/04 22:53:13 by vsack            ###   ########.fr        #
+#    Created: 2026/05/04 21:23:55 by vsack             #+#    #+#              #
+#    Updated: 2026/05/04 22:53:00 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,55 +104,75 @@ class LogProcessor(DataProcessor):
 				self._storage.append(formatted_str)
 
 
+class DataStream:
+	def __init__(self) -> None:
+		self.procs_reg: list[DataProcessor] = []
+
+	def register_processor(self, proc: DataProcessor) -> None:
+		self.procs_reg.append(proc)
+
+	def process_stream(self, stream: list[typing.Any]) -> None:
+		for item in stream:
+			processor_found = False
+			for processor in self.procs_reg:
+				if processor.validate(item):
+					processor.ingest(item)
+					processor_found = True
+					break
+			if not processor_found:
+				print(f"DataStream error: Can't process element in stream: {item}")
+
+	def print_processor_stats(self) -> None:
+		print("=== DataStream statistics ===")
+		if not self.procs_reg:
+			print("No processor found, no data")
+			return
+		for proc in self.procs_reg:
+			name = type(proc).__name__.replace("Processor", " Processor")
+			remaining = len(proc._storage)
+			total = remaining + proc._rank
+			print(f"{name}: total {total} items processed, remaining {remaining} on processor")
+
+
 if __name__ == "__main__":
-	print("=== Code Nexus Data Processor ===")
+	print("=== Code Nexus - Data Stream ===")
 
-	print("\nTesting Numeric Processor...")
+	print("\nInitialize Data Stream...")
+	stream = DataStream()
+
+	stream.print_processor_stats()
+	print("\nRegistering Processors\n")
 	num_proc = NumericProcessor()
-
-	print(f" Trying to validate input '42' (string): {num_proc.validate('42')}")
-	print(f" Trying to validate input 'Hello': {num_proc.validate('Hello')}")
-
-	print(" Test invalid ingestion of string 'foo' without prior validation:")
-	try:
-		num_proc.ingest("foo")  # ty:ignore[invalid-argument-type]
-	except TypeError as e:
-		print(f" Got exception: {e}")
-
-	print(" Processing data: [1, 2, 3, 4, 5]")
-	num_proc.ingest([1, 2, 3, 4, 5])
-
-	print(" Extracting 3 values...")
-	for _ in range(3):
-		rank, val = num_proc.output()
-		print(f" Numeric value {rank}: {val}")
-
-	print("\nTesting Text Processor...")
 	text_proc = TextProcessor()
-
-	print(f" Trying to validate input '42' (int): {text_proc.validate(42)}")
-
-	print(" Processing data: ['Hello', 'Nexus', 'World']")
-	text_proc.ingest(['Hello', 'Nexus', 'World'])
-
-	print(" Extracting 1 value...")
-	rank, val = text_proc.output()
-	print(f" Text value {rank}: {val}")
-
-	print("\nTesting Log Processor...")
 	log_proc = LogProcessor()
+	stream.register_processor(num_proc)
 
-	print(f" Trying to validate input 'Hello': {log_proc.validate('Hello')}")
-
-	log_data = [
-		{'log_level': 'NOTICE', 'log_message': 'Connection to server'},
-		{'log_level': 'ERROR', 'log_message': 'Unauthorized access!!!'}
+	batch = [
+		'HEYYYYY',
+		[1, 1.321, 231, 23],
+		[{'log_level': 'WARNING', 'log_message': 'Telnet access! Use ssh instead'},
+		{'log_level': 'INFO', 'log_message': 'User wil is connected'}],
+		42,
+		['Hi', 'five']
 	]
-	print(f" Processing data: {log_data}")
-	log_proc.ingest(log_data)
+	print(f"Send first batch of data on stream: {batch}")
+	stream.process_stream(batch)
+	stream.print_processor_stats()
 
-	print(" Extracting 2 values...")
+	print("\nRegistering other data processors")
+	stream.register_processor(text_proc)
+	stream.register_processor(log_proc)
+	print("Send the same batch again")
+	stream.process_stream(batch)
+	stream.print_processor_stats()
+
+	print("\nConsume some elements from the data processors: Numeric 3, Text 2, Log 1")
+	# We manually call output() to remove items from the queues
+	for _ in range(3):
+		num_proc.output()
 	for _ in range(2):
-		rank, val = log_proc.output()
-		print(f" Log entry {rank}: {val}")
-	print("\n=== All tests complete ===")
+		text_proc.output()
+	for _ in range(1):
+		log_proc.output()
+
+	stream.print_processor_stats()
