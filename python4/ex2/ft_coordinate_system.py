@@ -6,7 +6,7 @@
 #    By: tino <tino@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 00:33:29 by tino              #+#    #+#              #
-#    Updated: 2026/05/04 01:01:39 by tino             ###   ########.fr        #
+#    Updated: 2026/05/04 03:50:54 by tino             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,12 @@ def get_player_pos()->tuple:
 				print("Error: Exactly three values (x,y,z) are required.")
 				continue
 
-			# Create the tuple from the input string
 			return tuple(float(p.strip()) for p in parts)
 
 
 		except ValueError:
 			print("Error: Please enter numeric values only.")
 
-# --- Execution Logic ---
 if __name__ == "__main__":
 
 	player_coords = get_player_pos()
