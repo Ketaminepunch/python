@@ -6,7 +6,7 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 22:54:42 by vsack             #+#    #+#              #
-#    Updated: 2026/05/04 23:00:02 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/04 23:20:42 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,27 @@ class DataProcessor(abc.ABC):
 		current_rank = self._rank
 		self._rank += 1
 		return current_rank, data
+
+
+class ExportPlugin(typing.Protocol):
+	def process_output(self, data: list[tuple[int, str]]) -> None:
+
+
+class CSVExport:
+	def process_output(self, data: list[tuple[int, str]]) -> None:
+		values = [item[1]for item in data]
+		cvs_string = ", ".join(values)
+		print(f"CSV Output:\n{cvs_string}")
+
+
+class JSONExport:
+	def process_output(self, data: list[tuple[int, str]]) -> None:
+		json_value = []
+		for rank, value in data:
+			entry = f'"item_{rank}": "{value}"'
+			json_value.append(entry)
+		json_string = "{" + ", ".join(json_value) + "}"
+		print(f"JSON Output:\n{json_string}")
 
 
 class NumericProcessor(DataProcessor):
@@ -133,6 +154,14 @@ class DataStream:
 			total = remaining + proc._rank
 			print(f"{name}: total {total} items processed, remaining {remaining} on processor")
 
-
-class ExportPlugin(typing.Protocol):
-	def process_output(self, data: list[tuple[int, str]]) -> None:
+	def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
+		all_data: list[tuple[int, str]] = []
+		for proc in self.procs_reg:
+			for _ in range(nb):
+				try:
+					item = proc.output()
+					all_data.append(item)
+				except IndexError:
+					break
+		if all_data:
+			plugin.process_output(all_data)
