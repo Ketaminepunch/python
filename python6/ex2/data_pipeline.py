@@ -6,9 +6,10 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 22:54:42 by vsack             #+#    #+#              #
-#    Updated: 2026/05/04 23:20:42 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/07 17:15:01 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 import abc
 import typing
@@ -38,6 +39,7 @@ class DataProcessor(abc.ABC):
 
 class ExportPlugin(typing.Protocol):
 	def process_output(self, data: list[tuple[int, str]]) -> None:
+		...
 
 
 class CSVExport:
@@ -165,3 +167,37 @@ class DataStream:
 					break
 		if all_data:
 			plugin.process_output(all_data)
+
+
+if __name__ == "__main__":
+	print("=== Code Nexus - Data Pipeline ===")
+	print("\nInitialize Data Stream...\n")
+	stream = DataStream()
+	stream.print_processor_stats()
+
+	print("\nRegistering Processors\n")
+	stream.register_processor(NumericProcessor())
+	stream.register_processor(TextProcessor())
+	stream.register_processor(LogProcessor())
+
+	batch1 = ['Hello world', [3.14, -1, 2.71], [{'log_level': 'WARNING', 'log_message': 'Telnet access! Use ssh instead'}, {
+		'log_level': 'INFO', 'log_message': 'User wil is connected'}], 42, ['Hi', 'five']]
+	print(f"Send first batch of data on stream: {batch1}\n")
+	stream.process_stream(batch1)
+	stream.print_processor_stats()
+
+	print("\nSend 3 processed data from each processor to a CSV plugin:")
+	stream.output_pipeline(3, CSVExport())
+	print()
+	stream.print_processor_stats()
+
+	batch2 = [21, ['I love AI', 'LLMs are wonderful', 'Stay healthy'], [{'log_level': 'ERROR', 'log_message': '500 server crash'}, {
+		'log_level': 'NOTICE', 'log_message': 'Certificate expires in 10 days'}], [32, 42, 64, 84, 128, 168], 'World hello']
+	print(f"\nSend another batch of data: {batch2}\n")
+	stream.process_stream(batch2)
+	stream.print_processor_stats()
+
+	print("\nSend 5 processed data from each processor to a JSON plugin:")
+	stream.output_pipeline(5, JSONExport())
+	print()
+	stream.print_processor_stats()
