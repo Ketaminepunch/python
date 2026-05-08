@@ -6,7 +6,7 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 19:59:28 by vsack             #+#    #+#              #
-#    Updated: 2026/05/04 22:53:13 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/08 22:13:41 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,144 +15,144 @@ import typing
 
 
 class DataProcessor(abc.ABC):
-	def __init__(self) -> None:
-		self._storage: list[str] = []
-		self._rank: int = 0
+    def __init__(self) -> None:
+        self._storage: list[str] = []
+        self._rank: int = 0
 
-	@abc.abstractmethod
-	def validate(self, data: typing.Any) -> bool:
-		pass
+    @abc.abstractmethod
+    def validate(self, data: typing.Any) -> bool:
+        pass
 
-	@abc.abstractmethod
-	def ingest(self, data: typing.Any) -> None:
-		pass
+    @abc.abstractmethod
+    def ingest(self, data: typing.Any) -> None:
+        pass
 
-	def output(self) -> tuple[int, str]:
-		if not self._storage:
-			raise IndexError("No data to output")
-		data = self._storage.pop(0)
-		current_rank = self._rank
-		self._rank += 1
-		return current_rank, data
+    def output(self) -> tuple[int, str]:
+        if not self._storage:
+            raise IndexError("No data to output")
+        data = self._storage.pop(0)
+        current_rank = self._rank
+        self._rank += 1
+        return current_rank, data
 
 
 class NumericProcessor(DataProcessor):
-	def __init__(self) -> None:
-		super().__init__()
+    def __init__(self) -> None:
+        super().__init__()
 
-	def validate(self, data: typing.Any) -> bool:
-		if isinstance(data, (int, float)):
-			return True
-		elif isinstance(data, list):
-			return all(isinstance(item, (int, float))for item in data)
-		else:
-			return False
+    def validate(self, data: typing.Any) -> bool:
+        if isinstance(data, (int, float)):
+            return True
+        elif isinstance(data, list):
+            return all(isinstance(item, (int, float))for item in data)
+        else:
+            return False
 
-	def ingest(self, data: int | float | list[int | float]) -> None:
-		if not self.validate(data):
-			raise TypeError("Incorrect numeric data")
-		if isinstance(data, (int, float)):
-			self._storage.append(str(data))
-		elif isinstance(data, list):
-			for item in data:
-				self._storage.append(str(item))
+    def ingest(self, data: int | float | list[int | float]) -> None:
+        if not self.validate(data):
+            raise TypeError("Incorrect numeric data")
+        if isinstance(data, (int, float)):
+            self._storage.append(str(data))
+        elif isinstance(data, list):
+            for item in data:
+                self._storage.append(str(item))
 
 
 class TextProcessor(DataProcessor):
-	def __init__(self) -> None:
-		super().__init__()
+    def __init__(self) -> None:
+        super().__init__()
 
-	def validate(self, data: typing.Any) -> bool:
-		if isinstance(data, str):
-			return True
-		elif isinstance(data, list):
-			return all(isinstance(item, str)for item in data)
-		else:
-			return False
+    def validate(self, data: typing.Any) -> bool:
+        if isinstance(data, str):
+            return True
+        elif isinstance(data, list):
+            return all(isinstance(item, str)for item in data)
+        else:
+            return False
 
-	def ingest(self, data: str | list[str]) -> None:
-		if not self.validate(data):
-			raise TypeError("Incorrect string data")
-		if isinstance(data, str):
-			self._storage.append(str(data))
-		elif isinstance(data, list):
-			for item in data:
-				self._storage.append(str(item))
+    def ingest(self, data: str | list[str]) -> None:
+        if not self.validate(data):
+            raise TypeError("Incorrect string data")
+        if isinstance(data, str):
+            self._storage.append(str(data))
+        elif isinstance(data, list):
+            for item in data:
+                self._storage.append(str(item))
 
 
 class LogProcessor(DataProcessor):
-	def __init__(self) -> None:
-		super().__init__()
+    def __init__(self) -> None:
+        super().__init__()
 
-	def validate(self, data: typing.Any) -> bool:
-		if isinstance(data, dict):
-			return True
-		elif isinstance(data, list):
-			return all(isinstance(item, dict)for item in data)
-		else:
-			return False
+    def validate(self, data: typing.Any) -> bool:
+        if isinstance(data, dict):
+            return True
+        elif isinstance(data, list):
+            return all(isinstance(item, dict)for item in data)
+        else:
+            return False
 
-	def ingest(self, data: dict | list[dict]) -> None:
-		if not self.validate(data):
-			raise TypeError("Incorrect dictionary data")
-		if isinstance(data, dict):
-			formatted_str = f"{data['log_level']}: {data['log_message']}"
-			self._storage.append(formatted_str)
-		elif isinstance(data, list):
-			for item in data:
-				formatted_str = f"{item['log_level']}: {item['log_message']}"
-				self._storage.append(formatted_str)
+    def ingest(self, data: dict | list[dict]) -> None:
+        if not self.validate(data):
+            raise TypeError("Incorrect dictionary data")
+        if isinstance(data, dict):
+            formatted_str = f"{data['log_level']}: {data['log_message']}"
+            self._storage.append(formatted_str)
+        elif isinstance(data, list):
+            for item in data:
+                formatted_str = f"{item['log_level']}: {item['log_message']}"
+                self._storage.append(formatted_str)
 
 
 if __name__ == "__main__":
-	print("=== Code Nexus Data Processor ===")
+    print("=== Code Nexus Data Processor ===")
 
-	print("\nTesting Numeric Processor...")
-	num_proc = NumericProcessor()
+    print("\nTesting Numeric Processor...")
+    num_proc = NumericProcessor()
 
-	print(f" Trying to validate input '42' (string): {num_proc.validate('42')}")
-	print(f" Trying to validate input 'Hello': {num_proc.validate('Hello')}")
+    print(f" Trying to validate input '42' (string): {num_proc.validate('42')}")
+    print(f" Trying to validate input 'Hello': {num_proc.validate('Hello')}")
 
-	print(" Test invalid ingestion of string 'foo' without prior validation:")
-	try:
-		num_proc.ingest("foo")  # ty:ignore[invalid-argument-type]
-	except TypeError as e:
-		print(f" Got exception: {e}")
+    print(" Test invalid ingestion of string 'foo' without prior validation:")
+    try:
+        num_proc.ingest("foo")  # type: ignore
+    except TypeError as e:
+        print(f" Got exception: {e}")
 
-	print(" Processing data: [1, 2, 3, 4, 5]")
-	num_proc.ingest([1, 2, 3, 4, 5])
+    print(" Processing data: [1, 2, 3, 4, 5]")
+    num_proc.ingest([1, 2, 3, 4, 5])
 
-	print(" Extracting 3 values...")
-	for _ in range(3):
-		rank, val = num_proc.output()
-		print(f" Numeric value {rank}: {val}")
+    print(" Extracting 3 values...")
+    for _ in range(3):
+        rank, val = num_proc.output()
+        print(f" Numeric value {rank}: {val}")
 
-	print("\nTesting Text Processor...")
-	text_proc = TextProcessor()
+    print("\nTesting Text Processor...")
+    text_proc = TextProcessor()
 
-	print(f" Trying to validate input '42' (int): {text_proc.validate(42)}")
+    print(f" Trying to validate input '42' (int): {text_proc.validate(42)}")
 
-	print(" Processing data: ['Hello', 'Nexus', 'World']")
-	text_proc.ingest(['Hello', 'Nexus', 'World'])
+    print(" Processing data: ['Hello', 'Nexus', 'World']")
+    text_proc.ingest(['Hello', 'Nexus', 'World'])
 
-	print(" Extracting 1 value...")
-	rank, val = text_proc.output()
-	print(f" Text value {rank}: {val}")
+    print(" Extracting 1 value...")
+    rank, val = text_proc.output()
+    print(f" Text value {rank}: {val}")
 
-	print("\nTesting Log Processor...")
-	log_proc = LogProcessor()
+    print("\nTesting Log Processor...")
+    log_proc = LogProcessor()
 
-	print(f" Trying to validate input 'Hello': {log_proc.validate('Hello')}")
+    print(f" Trying to validate input 'Hello': {log_proc.validate('Hello')}")
 
-	log_data = [
-		{'log_level': 'NOTICE', 'log_message': 'Connection to server'},
-		{'log_level': 'ERROR', 'log_message': 'Unauthorized access!!!'}
-	]
-	print(f" Processing data: {log_data}")
-	log_proc.ingest(log_data)
+    log_data = [
+        {'log_level': 'NOTICE', 'log_message': 'Connection to server'},
+        {'log_level': 'ERROR', 'log_message': 'Unauthorized access!!!'}
+    ]
+    print(f" Processing data: {log_data}")
+    log_proc.ingest(log_data)
 
-	print(" Extracting 2 values...")
-	for _ in range(2):
-		rank, val = log_proc.output()
-		print(f" Log entry {rank}: {val}")
-	print("\n=== All tests complete ===")
+    print(" Extracting 2 values...")
+    for _ in range(2):
+        rank, val = log_proc.output()
+        print(f" Log entry {rank}: {val}")
+    print("\n=== All tests complete ===")

@@ -6,9 +6,9 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/01 19:09:20 by vsack             #+#    #+#              #
-#    Updated: 2026/05/01 20:52:23 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/08 21:25:23 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-def ft_hello_garden():
-	print("Hello, Garden Community")
+def ft_hello_garden() -> None:
+    print("Hello, Garden Community")
