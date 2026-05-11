@@ -6,9 +6,10 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/01 22:20:30 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 21:43:01 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 16:37:34 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 class Plant:
     name: str
@@ -33,7 +34,7 @@ garden = [
     Plant("Potato", 2, 1.4),
     Plant("Apple Tree", 1242, 2000.321),
     Plant("Sunflower", 80, 88),
-    Plant("Pumpkin", 5, 0.4)
+    Plant("Pumpkin", 5, 0.4),
 ]
 print("=== Plant Factory Output")
 for plant in garden:

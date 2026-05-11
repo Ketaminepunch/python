@@ -6,9 +6,10 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/01 20:18:27 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 21:41:46 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 16:37:15 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 def ft_seed_inventory(seed_type: str, quantity: int, unit: str) -> None:
     capSeed = seed_type.capitalize() + " seeds:"

@@ -6,7 +6,7 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 18:59:58 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 22:11:19 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 18:21:03 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,13 @@ import typing
 
 def gen_event() -> typing.Generator:
     players = ["Tom", "Jerry", "Sam", "Clade", "Aurora"]
-    actions = ["connected", "disconnected",
-               "leveled up", "found a legendary item", "died"]
+    actions = [
+        "connected",
+        "disconnected",
+        "leveled up",
+        "found a legendary item",
+        "died",
+    ]
 
     while True:
         name = random.choice(players)

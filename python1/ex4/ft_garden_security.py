@@ -6,9 +6,10 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/01 22:42:02 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 21:43:31 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 16:37:36 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 class Plant:
     def __init__(self, name: str, age: int, height: float) -> None:
@@ -47,11 +48,7 @@ class Plant:
             print("Height updated:", value)
 
     def show(self) -> None:
-        print(
-            f"Plant created: {
-                self._name}: {
-                self._height}cm, {
-                self._age} days old\n")
+        print(f"Plant created: {self._name}: {self._height}cm, {self._age} days old\n")
 
     def invalid_height(self) -> None:
         print(f"{self._name}: Error, height can't be negative")
@@ -60,11 +57,7 @@ class Plant:
         print(f"{self._name}: Error, age can't be negative")
 
     def show_state(self) -> None:
-        print(
-            f"Current state: {
-                self._name}: {
-                self._height}cm, {
-                self._age} days old")
+        print(f"Current state: {self._name}: {self._height}cm, {self._age} days old")
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 21:23:55 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 21:05:50 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 18:42:13 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,9 +120,7 @@ class DataStream:
                     processor_found = True
                     break
             if not processor_found:
-                print(
-                    f"DataStream error: Can't process element in stream: {item}"
-                )
+                print(f"DataStream error: Can't process element in stream: {item}")
 
     def print_processor_stats(self) -> None:
         print("=== DataStream statistics ===")
@@ -134,8 +132,7 @@ class DataStream:
             remaining = len(proc._storage)
             total = remaining + proc._rank
             print(
-                f"{name}: total {total} items processed, "
-                f"remaining {remaining} on processor"
+                f"{name}: total {total} items processed, remaining {remaining} on processor"
             )
 
 
@@ -144,6 +141,7 @@ if __name__ == "__main__":
 
     print("\nInitialize Data Stream...")
     stream = DataStream()
+
     stream.print_processor_stats()
     print("\nRegistering Processors\n")
     num_proc = NumericProcessor()
@@ -155,10 +153,7 @@ if __name__ == "__main__":
         "HEYYYYY",
         [1, 1.321, 231, 23],
         [
-            {
-                "log_level": "WARNING",
-                "log_message": "Telnet access! Use ssh instead",
-            },
+            {"log_level": "WARNING", "log_message": "Telnet access! Use ssh instead"},
             {"log_level": "INFO", "log_message": "User wil is connected"},
         ],
         42,
@@ -175,10 +170,7 @@ if __name__ == "__main__":
     stream.process_stream(batch)
     stream.print_processor_stats()
 
-    print(
-        "\nConsume some elements from the data processors: "
-        "Numeric 3, Text 2, Log 1"
-    )
+    print("\nConsume some elements from the data processors: Numeric 3, Text 2, Log 1")
     # We manually call output() to remove items from the queues
     for _ in range(3):
         num_proc.output()

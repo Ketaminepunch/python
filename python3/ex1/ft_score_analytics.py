@@ -6,7 +6,7 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/03 22:16:27 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 22:01:52 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 16:59:34 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,9 @@ class InvalidInput(Exception):
 
 def empty_args() -> None:
     raise InvalidInput(
-        "No scores provided. Usage: python3 "
-        "ft_score_analytics.py <score1> <score2> ...")
+        "No scores provided."
+        "Usage: python3 ft_score_analytics.py <score1> <score2> ..."
+    )
 
 
 def main() -> None:

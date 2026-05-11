@@ -6,7 +6,7 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 17:42:27 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 22:11:42 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 18:35:00 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,14 +39,12 @@ def main() -> None:
             print("Not saving data.")
         else:
             try:
-                with open(new_name, "w")as out_file:
+                with open(new_name, "w") as out_file:
                     out_file.write(new_content)
                 print(f"Saving data to '{new_name}'")
                 print(f"Data saved in file '{new_name}'")
             except PermissionError as e:
-                print(
-                    f"[STDERR] Error opening file '{new_name}': {e}",
-                    file=sys.stderr)
+                print(f"[STDERR] Error opening file '{new_name}': {e}", file=sys.stderr)
 
     except FileNotFoundError as e:
         print(f"[STDERR] Error opening file '{filename}': {e}", file=sys.stderr)

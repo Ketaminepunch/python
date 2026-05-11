@@ -6,9 +6,10 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/03 20:55:39 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 22:14:52 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 16:57:45 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 class GardenError(Exception):
     def __init__(self, message: str = "An Error occurred") -> None:

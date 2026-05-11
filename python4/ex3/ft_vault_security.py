@@ -6,16 +6,16 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 21:43:46 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 21:15:24 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 18:41:46 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import typing
 
 
-def secure_archive(filename: str, action: str = "read",
-                   content: typing.Optional[str] = None
-                   ) -> typing.Tuple[bool, str]:
+def secure_archive(
+    filename: str, action: str = "read", content: typing.Optional[str] = None
+) -> typing.Tuple[bool, str]:
 
     try:
         if action == "read":

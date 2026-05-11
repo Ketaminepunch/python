@@ -6,7 +6,7 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 19:59:28 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 22:13:41 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 18:42:08 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ class NumericProcessor(DataProcessor):
         if isinstance(data, (int, float)):
             return True
         elif isinstance(data, list):
-            return all(isinstance(item, (int, float))for item in data)
+            return all(isinstance(item, (int, float)) for item in data)
         else:
             return False
 
@@ -66,7 +66,7 @@ class TextProcessor(DataProcessor):
         if isinstance(data, str):
             return True
         elif isinstance(data, list):
-            return all(isinstance(item, str)for item in data)
+            return all(isinstance(item, str) for item in data)
         else:
             return False
 
@@ -88,7 +88,7 @@ class LogProcessor(DataProcessor):
         if isinstance(data, dict):
             return True
         elif isinstance(data, list):
-            return all(isinstance(item, dict)for item in data)
+            return all(isinstance(item, dict) for item in data)
         else:
             return False
 
@@ -133,7 +133,7 @@ if __name__ == "__main__":
     print(f" Trying to validate input '42' (int): {text_proc.validate(42)}")
 
     print(" Processing data: ['Hello', 'Nexus', 'World']")
-    text_proc.ingest(['Hello', 'Nexus', 'World'])
+    text_proc.ingest(["Hello", "Nexus", "World"])
 
     print(" Extracting 1 value...")
     rank, val = text_proc.output()
@@ -145,8 +145,8 @@ if __name__ == "__main__":
     print(f" Trying to validate input 'Hello': {log_proc.validate('Hello')}")
 
     log_data = [
-        {'log_level': 'NOTICE', 'log_message': 'Connection to server'},
-        {'log_level': 'ERROR', 'log_message': 'Unauthorized access!!!'}
+        {"log_level": "NOTICE", "log_message": "Connection to server"},
+        {"log_level": "ERROR", "log_message": "Unauthorized access!!!"},
     ]
     print(f" Processing data: {log_data}")
     log_proc.ingest(log_data)

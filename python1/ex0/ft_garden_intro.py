@@ -6,9 +6,10 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/01 21:07:37 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 21:42:03 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 16:37:21 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 def ft_garden_intro() -> None:
     plantName = "Cannabis"

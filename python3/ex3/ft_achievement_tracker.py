@@ -6,29 +6,48 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 19:00:21 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 22:05:50 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 18:07:17 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import random
 
 
-def gen_player_achievements(all_achievements: list) -> set:
+def gen_player_achievements(all_achievements: list[str]) -> set[str]:
     count = random.randint(15, len(all_achievements) - 5)
     return set(random.sample(all_achievements, count))
 
 
 if __name__ == "__main__":
     all_possible = {
-        'First Steps', 'Hello World', 'Syntax Savior', 'The Debugger',
-        'Infinite Loop Survivor', 'Stack Overflow Expert', 'Pointers Master',
-        'Memory Leak Fixer', 'Segfault Conqueror', 'Valgrind Warrior',
-        'Makefile Architect', 'Git Hero', 'Merge Conflict Mediator',
-        'Commit King', 'Push Enthusiast', 'Pull Request Professional',
-        'Code Reviewer', 'Unit Test Titan', 'Integration Inspector',
-        'Deployment Dragon', 'Scalability Sage', 'Performance Polisher',
-        'Refactoring Ranger', 'Documentation Druid', 'README Writer',
-        'Clean Code Crusader', 'Algorithm Alchemist', 'Data Structure Duke',
+        "First Steps",
+        "Hello World",
+        "Syntax Savior",
+        "The Debugger",
+        "Infinite Loop Survivor",
+        "Stack Overflow Expert",
+        "Pointers Master",
+        "Memory Leak Fixer",
+        "Segfault Conqueror",
+        "Valgrind Warrior",
+        "Makefile Architect",
+        "Git Hero",
+        "Merge Conflict Mediator",
+        "Commit King",
+        "Push Enthusiast",
+        "Pull Request Professional",
+        "Code Reviewer",
+        "Unit Test Titan",
+        "Integration Inspector",
+        "Deployment Dragon",
+        "Scalability Sage",
+        "Performance Polisher",
+        "Refactoring Ranger",
+        "Documentation Druid",
+        "README Writer",
+        "Clean Code Crusader",
+        "Algorithm Alchemist",
+        "Data Structure Duke",
     }
     masterList = list(all_possible)
     LeeSin = gen_player_achievements(masterList)

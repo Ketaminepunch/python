@@ -6,7 +6,7 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/04 19:00:10 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 22:11:02 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 18:11:39 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,12 @@ def parse_input() -> None:
     i = 1
     j = 0
     size = len(sys.argv)
-    inventory: dict = dict()
+    inventory: dict[str, int] = dict()
 
     while i < size:
         arg = sys.argv[i]
-        if arg.count(':') == 1:
-            parts = arg.split(':')
+        if arg.count(":") == 1:
+            parts = arg.split(":")
             name = parts[0].strip()
             raw_count = parts[1].strip()
             if name in inventory.keys():
@@ -59,17 +59,11 @@ def parse_input() -> None:
             maxidx = j
         j += 1
     print(
-        f"The most abundent item is {
-            list(
-                inventory.keys())[maxidx]} with {
-            list(
-                inventory.values())[maxidx]}")
+        f"The most abundent item is {list(inventory.keys())[maxidx]} with {list(inventory.values())[maxidx]}"
+    )
     print(
-        f"The least abundent item is {
-            list(
-                inventory.keys())[minidx]} with {
-            list(
-                inventory.values())[minidx]}")
+        f"The least abundent item is {list(inventory.keys())[minidx]} with {list(inventory.values())[minidx]}"
+    )
     inventory.update({"Milk": 12})
     print(inventory)
 

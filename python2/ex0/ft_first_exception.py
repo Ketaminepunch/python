@@ -6,9 +6,10 @@
 #    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/03 16:57:12 by vsack             #+#    #+#              #
-#    Updated: 2026/05/08 21:17:05 by vsack            ###   ########.fr        #
+#    Updated: 2026/05/11 16:52:37 by vsack            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 def input_temperature(temp_str: str) -> int:
     return int(temp_str)
