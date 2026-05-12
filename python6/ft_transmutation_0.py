@@ -1,19 +1,21 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  ft_alembic_5.py                                   :+:      :+:    :+:    #
+#  ft_transmutation_0.py                             :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/05/12 20:42:10 by vsack           #+#    #+#               #
-#  Updated: 2026/05/12 20:42:11 by vsack           ###   ########.fr        #
+#  Created: 2026/05/12 20:55:02 by vsack           #+#    #+#               #
+#  Updated: 2026/05/12 21:00:13 by vsack           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-from alchemy import create_air
+import alchemy.transmutation.recipes
+
 
 if __name__ == "__main__":
-    print("=== Alembic 5 ===")
-    print("Accessing the alchemy module using "
-          "'from alchemy import create_air'")
-    print(f"Testing 'create_air': {create_air()}")
+    print("=== Transmutation 1 ===")
+    print("Using file alchemy/transmutation/recipes.py directly")
+    print(
+        f"Testing lead to gold:"
+        f" {alchemy.transmutation.recipes.lead_to_gold()}")

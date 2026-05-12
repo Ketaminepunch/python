@@ -1,19 +1,18 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  ft_alembic_5.py                                   :+:      :+:    :+:    #
+#  light_validator.py                                :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/05/12 20:42:10 by vsack           #+#    #+#               #
-#  Updated: 2026/05/12 20:42:11 by vsack           ###   ########.fr        #
+#  Created: 2026/05/12 21:08:19 by vsack           #+#    #+#               #
+#  Updated: 2026/05/12 21:51:49 by vsack           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-from alchemy import create_air
-
-if __name__ == "__main__":
-    print("=== Alembic 5 ===")
-    print("Accessing the alchemy module using "
-          "'from alchemy import create_air'")
-    print(f"Testing 'create_air': {create_air()}")
+def validate_ingredients(ingredients: str) -> str:
+    from .light_spellbook import light_spell_allowed_ingredients
+    allowed = light_spell_allowed_ingredients()
+    if any(item in ingredients for item in allowed):
+        return f"{ingredients} - VALID"
+    return f"{ingredients} - INVALID"
