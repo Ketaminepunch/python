@@ -1,14 +1,14 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_garden_analytics.py                             :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/02 01:44:24 by vsack             #+#    #+#              #
-#    Updated: 2026/05/11 16:45:19 by vsack            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# ************************************************************************* #
+#                                                                           #
+#                                                      :::      ::::::::    #
+#  ft_garden_analytics.py                            :+:      :+:    :+:    #
+#                                                  +:+ +:+         +:+      #
+#  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
+#                                              +#+#+#+#+#+   +#+            #
+#  Created: 2026/05/12 16:58:21 by vsack           #+#    #+#               #
+#  Updated: 2026/05/12 16:58:21 by vsack           ###   ########.fr        #
+#                                                                           #
+# ************************************************************************* #
 
 
 class Plant:
@@ -22,7 +22,8 @@ class Plant:
         def display(self, name: str) -> None:
             print(f" --- Statistics for {name} ---")
             print(
-                f" Stats: {self.grow_calls} grow, {self.age_calls} age, {self.show_calls} show"
+                f" Stats: {self.grow_calls} grow,"
+                f"{self.age_calls} age, {self.show_calls} show"
             )
 
     def __init__(self, name: str, age: int, height: float) -> None:
@@ -112,7 +113,8 @@ class Tree(Plant):
             super().display(name)
             print(f" Shade Calls: {self.shade_calls}")
 
-    def __init__(self, name: str, age: int, height: float, trunk_diameter: int) -> None:
+    def __init__(self, name: str, age: int, height: float,
+                 trunk_diameter: int) -> None:
         super().__init__(name, age, height)
         self.thickness = trunk_diameter
         self.stats = self.Tree_Analytics()
@@ -132,7 +134,8 @@ class Tree(Plant):
 
 class Vegetable(Plant):
     def __init__(
-        self, name: str, age: int, height: float, harvest_season: str, nutrition: int
+        self, name: str, age: int, height: float,
+        harvest_season: str, nutrition: int
     ) -> None:
         super().__init__(name, age, height)
         self.season = harvest_season

@@ -1,14 +1,14 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_plant_types.py                                  :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/02 00:18:13 by vsack             #+#    #+#              #
-#    Updated: 2026/05/11 16:38:04 by vsack            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# ************************************************************************* #
+#                                                                           #
+#                                                      :::      ::::::::    #
+#  ft_plant_types.py                                 :+:      :+:    :+:    #
+#                                                  +:+ +:+         +:+      #
+#  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
+#                                              +#+#+#+#+#+   +#+            #
+#  Created: 2026/05/12 16:57:51 by vsack           #+#    #+#               #
+#  Updated: 2026/05/12 16:58:12 by vsack           ###   ########.fr        #
+#                                                                           #
+# ************************************************************************* #
 
 
 class Plant:
@@ -70,13 +70,15 @@ class Flower(Plant):
 
 
 class Tree(Plant):
-    def __init__(self, name: str, age: int, height: float, trunk_diameter: int) -> None:
+    def __init__(self, name: str, age: int, height: float,
+                 trunk_diameter: int) -> None:
         super().__init__(name, age, height)
         self._thickness = trunk_diameter
 
     def shade(self) -> None:
         print(
-            f"Tree {self._name} is now giving a shade of {self._height}cm long and {self._thickness}cm wide"
+            f"Tree {self._name} is now giving a shade of {self._height}cm"
+            f" long and {self._thickness}cm wide"
         )
 
     def show(self) -> None:
@@ -86,7 +88,8 @@ class Tree(Plant):
 
 class Vegetable(Plant):
     def __init__(
-        self, name: str, age: int, height: float, harvest_season: str, nutrition: int
+        self, name: str, age: int, height: float,
+        harvest_season: str, nutrition: int
     ) -> None:
         super().__init__(name, age, height)
         self._season = harvest_season
@@ -126,6 +129,8 @@ if __name__ == "__main__":
     tomato = Vegetable("Tomato", 1, 4.4, "april", 0)
     print("=== Vegetable")
     tomato.show()
-    print(f"Growing tomato for {days} days and its growing by {growthIncre}cm per day")
+    print(
+        f"Growing tomato for {days} days and"
+        f" its growing by {growthIncre}cm per day")
     tomato.grow(growthIncre)
     tomato.show()

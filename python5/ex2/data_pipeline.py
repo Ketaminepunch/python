@@ -1,14 +1,14 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    data_pipeline.py                                   :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/04 22:54:42 by vsack             #+#    #+#              #
-#    Updated: 2026/05/11 18:42:34 by vsack            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# ************************************************************************* #
+#                                                                           #
+#                                                      :::      ::::::::    #
+#  data_pipeline.py                                  :+:      :+:    :+:    #
+#                                                  +:+ +:+         +:+      #
+#  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
+#                                              +#+#+#+#+#+   +#+            #
+#  Created: 2026/05/12 17:03:33 by vsack           #+#    #+#               #
+#  Updated: 2026/05/12 17:05:58 by vsack           ###   ########.fr        #
+#                                                                           #
+# ************************************************************************* #
 
 
 import abc
@@ -142,7 +142,9 @@ class DataStream:
                     processor_found = True
                     break
             if not processor_found:
-                print(f"DataStream error: Can't process element in stream: {item}")
+                print(
+                    f"DataStream error: Can't process "
+                    f"element in stream: {item}")
 
     def print_processor_stats(self) -> None:
         print("=== DataStream statistics ===")
@@ -154,7 +156,8 @@ class DataStream:
             remaining = len(proc._storage)
             total = remaining + proc._rank
             print(
-                f"{name}: total {total} items processed, remaining {remaining} on processor"
+                f"{name}: total {total} items processed, remaining "
+                f"{remaining} on processor"
             )
 
     def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
@@ -185,7 +188,8 @@ if __name__ == "__main__":
         "Hello world",
         [3.14, -1, 2.71],
         [
-            {"log_level": "WARNING", "log_message": "Telnet access! Use ssh instead"},
+            {"log_level": "WARNING", "log_message":
+             "Telnet access! Use ssh instead"},
             {"log_level": "INFO", "log_message": "User wil is connected"},
         ],
         42,
@@ -205,7 +209,8 @@ if __name__ == "__main__":
         ["I love AI", "LLMs are wonderful", "Stay healthy"],
         [
             {"log_level": "ERROR", "log_message": "500 server crash"},
-            {"log_level": "NOTICE", "log_message": "Certificate expires in 10 days"},
+            {"log_level": "NOTICE", "log_message":
+             "Certificate expires in 10 days"},
         ],
         [32, 42, 64, 84, 128, 168],
         "World hello",

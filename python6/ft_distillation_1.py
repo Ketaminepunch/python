@@ -1,24 +1,23 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  ft_count_harvest_recursive.py                     :+:      :+:    :+:    #
+#  ft_distillation_1.py                              :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/05/12 16:56:56 by vsack           #+#    #+#               #
-#  Updated: 2026/05/12 16:56:56 by vsack           ###   ########.fr        #
+#  Created: 2026/05/12 17:04:36 by vsack           #+#    #+#               #
+#  Updated: 2026/05/12 17:04:36 by vsack           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
+import alchemy
 
 
-def harvest_helper(current: int, target: int) -> None:
-    if current > target:
-        print("Harvest time!")
-        return
-    print("Day:", current)
-    harvest_helper(current + 1, target)
+def distillation() -> None:
+    print("=== Distillation 0 ===")
+    print("Using: 'import alchemy'structure to access potions")
+    print(alchemy.potions.strength_potion())
+    print(alchemy.heal())
 
 
-def ft_count_harvest_recursive() -> None:
-    days = int(input("Days until harvest: "))
-    harvest_helper(1, days)
+if __name__ == "__main__":
+    distillation()

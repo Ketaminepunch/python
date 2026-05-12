@@ -1,13 +1,6 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    __init__.py                                        :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/07 18:04:41 by vsack             #+#    #+#              #
-#    Updated: 2026/05/11 18:46:14 by vsack            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
-from .elements import create_air  # type: ignore
+from .elements import create_air
+
+from .potions import strength_potion
+
+from .potions import healing_potion as heal

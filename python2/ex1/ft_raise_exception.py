@@ -1,14 +1,14 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_raise_exception.py                              :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/03 19:16:01 by vsack             #+#    #+#              #
-#    Updated: 2026/05/11 16:55:39 by vsack            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# ************************************************************************* #
+#                                                                           #
+#                                                      :::      ::::::::    #
+#  ft_raise_exception.py                             :+:      :+:    :+:    #
+#                                                  +:+ +:+         +:+      #
+#  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
+#                                              +#+#+#+#+#+   +#+            #
+#  Created: 2026/05/12 16:58:38 by vsack           #+#    #+#               #
+#  Updated: 2026/05/12 16:58:51 by vsack           ###   ########.fr        #
+#                                                                           #
+# ************************************************************************* #
 
 
 def input_temperature(temp_str: str) -> int | None:
@@ -24,25 +24,25 @@ def input_temperature(temp_str: str) -> int | None:
 def test_temperature() -> None:
 
     print("=== Garden Temperature ===\n")
-    print(f"Input Data is '25'")
+    print("Input Data is '25'")
     try:
         temp = input_temperature("25")
         print(f"Temperature is now {temp}°C\n")
     except ValueError as e:
         print(f"Caught input_temperature Error:{e}\n")
-    print(f"Input Data is 'abc'")
+    print("Input Data is 'abc'")
     try:
         temp = input_temperature("abc")
         print(f"Temperature is now {temp}°C\n")
     except ValueError as e:
         print(f"Caught input_temperature Error: {e}\n")
-    print(f"Input Data is '100'")
+    print("Input Data is '100'")
     try:
         temp = input_temperature("100")
         print(f"Temperature is now {temp}°C\n")
     except ValueError as e:
         print(f"Caught input_temperature Error: {e}\n")
-    print(f"Input Data is '-50'")
+    print("Input Data is '-50'")
     try:
         temp = input_temperature("-50")
         print(f"Temperature is now {temp}°C\n")

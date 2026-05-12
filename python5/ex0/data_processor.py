@@ -1,14 +1,14 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    data_processor.py                                  :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/04 19:59:28 by vsack             #+#    #+#              #
-#    Updated: 2026/05/11 18:42:08 by vsack            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# ************************************************************************* #
+#                                                                           #
+#                                                      :::      ::::::::    #
+#  data_processor.py                                 :+:      :+:    :+:    #
+#                                                  +:+ +:+         +:+      #
+#  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
+#                                              +#+#+#+#+#+   +#+            #
+#  Created: 2026/05/12 17:01:45 by vsack           #+#    #+#               #
+#  Updated: 2026/05/12 17:07:37 by vsack           ###   ########.fr        #
+#                                                                           #
+# ************************************************************************* #
 
 import abc
 import typing
@@ -110,7 +110,8 @@ if __name__ == "__main__":
     print("\nTesting Numeric Processor...")
     num_proc = NumericProcessor()
 
-    print(f" Trying to validate input '42' (string): {num_proc.validate('42')}")
+    print(
+        f" Trying to validate input '42' (string): {num_proc.validate('42')}")
     print(f" Trying to validate input 'Hello': {num_proc.validate('Hello')}")
 
     print(" Test invalid ingestion of string 'foo' without prior validation:")

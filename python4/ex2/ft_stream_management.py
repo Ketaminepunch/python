@@ -1,14 +1,14 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_stream_management.py                            :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/04 17:42:27 by vsack             #+#    #+#              #
-#    Updated: 2026/05/11 18:35:00 by vsack            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# ************************************************************************* #
+#                                                                           #
+#                                                      :::      ::::::::    #
+#  ft_stream_management.py                           :+:      :+:    :+:    #
+#                                                  +:+ +:+         +:+      #
+#  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
+#                                              +#+#+#+#+#+   +#+            #
+#  Created: 2026/05/12 17:01:23 by vsack           #+#    #+#               #
+#  Updated: 2026/05/12 17:07:30 by vsack           ###   ########.fr        #
+#                                                                           #
+# ************************************************************************* #
 
 
 import sys
@@ -44,14 +44,18 @@ def main() -> None:
                 print(f"Saving data to '{new_name}'")
                 print(f"Data saved in file '{new_name}'")
             except PermissionError as e:
-                print(f"[STDERR] Error opening file '{new_name}': {e}", file=sys.stderr)
+                print(f"[STDERR] Error opening file '{new_name}': {e}",
+                      file=sys.stderr)
 
     except FileNotFoundError as e:
-        print(f"[STDERR] Error opening file '{filename}': {e}", file=sys.stderr)
+        print(
+            f"[STDERR] Error opening file '{filename}': {e}", file=sys.stderr)
     except PermissionError as e:
-        print(f"[STDERR] Error opening file '{filename}': {e}", file=sys.stderr)
+        print(
+            f"[STDERR] Error opening file '{filename}': {e}", file=sys.stderr)
     except UnicodeDecodeError as e:
-        print(f"[STDERR] Error opening file '{filename}': {e}", file=sys.stderr)
+        print(
+            f"[STDERR] Error opening file '{filename}': {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":

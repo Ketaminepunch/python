@@ -1,14 +1,14 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_inventory_system.py                             :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/04 19:00:10 by vsack             #+#    #+#              #
-#    Updated: 2026/05/11 18:11:39 by vsack            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# ************************************************************************* #
+#                                                                           #
+#                                                      :::      ::::::::    #
+#  ft_inventory_system.py                            :+:      :+:    :+:    #
+#                                                  +:+ +:+         +:+      #
+#  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
+#                                              +#+#+#+#+#+   +#+            #
+#  Created: 2026/05/12 16:59:30 by vsack           #+#    #+#               #
+#  Updated: 2026/05/12 17:00:11 by vsack           ###   ########.fr        #
+#                                                                           #
+# ************************************************************************* #
 
 import sys
 
@@ -59,10 +59,12 @@ def parse_input() -> None:
             maxidx = j
         j += 1
     print(
-        f"The most abundent item is {list(inventory.keys())[maxidx]} with {list(inventory.values())[maxidx]}"
+        f"The most abundent item is {list(inventory.keys())[maxidx]}"
+        f" with {list(inventory.values())[maxidx]}"
     )
     print(
-        f"The least abundent item is {list(inventory.keys())[minidx]} with {list(inventory.values())[minidx]}"
+        f"The least abundent item is {list(inventory.keys())[minidx]}"
+        f" with {list(inventory.values())[minidx]}"
     )
     inventory.update({"Milk": 12})
     print(inventory)

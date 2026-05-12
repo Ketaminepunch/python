@@ -1,14 +1,14 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_garden_security.py                              :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vsack <vsack@student.42vienna.com>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/01 22:42:02 by vsack             #+#    #+#              #
-#    Updated: 2026/05/11 16:37:36 by vsack            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# ************************************************************************* #
+#                                                                           #
+#                                                      :::      ::::::::    #
+#  ft_garden_security.py                             :+:      :+:    :+:    #
+#                                                  +:+ +:+         +:+      #
+#  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
+#                                              +#+#+#+#+#+   +#+            #
+#  Created: 2026/05/12 16:57:24 by vsack           #+#    #+#               #
+#  Updated: 2026/05/12 16:57:47 by vsack           ###   ########.fr        #
+#                                                                           #
+# ************************************************************************* #
 
 
 class Plant:
@@ -48,7 +48,9 @@ class Plant:
             print("Height updated:", value)
 
     def show(self) -> None:
-        print(f"Plant created: {self._name}: {self._height}cm, {self._age} days old\n")
+        print(
+            f"Plant created: {self._name}:"
+            f" {self._height}cm, {self._age} days old\n")
 
     def invalid_height(self) -> None:
         print(f"{self._name}: Error, height can't be negative")
@@ -57,7 +59,9 @@ class Plant:
         print(f"{self._name}: Error, age can't be negative")
 
     def show_state(self) -> None:
-        print(f"Current state: {self._name}: {self._height}cm, {self._age} days old")
+        print(
+            f"Current state: {self._name}:"
+            f" {self._height}cm, {self._age} days old")
 
 
 if __name__ == "__main__":
