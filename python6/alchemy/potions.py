@@ -10,6 +10,6 @@ def healing_potion() -> str:
 
 def strength_potion() -> str:
     return (
-        f"Strength potion brewed with '{el.create_fire()}' "  # type: ignore
-        f"and '{el.create_water()}'"  # type: ignore
+        f"Strength potion brewed with '{el.create_fire()}' "
+        f"and '{el.create_water()}'"
     )
