@@ -6,7 +6,7 @@
 #  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/14 22:17:12 by vsack           #+#    #+#               #
-#  Updated: 2026/05/14 22:41:45 by vsack           ###   ########.fr        #
+#  Updated: 2026/05/14 23:44:39 by vsack           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -41,7 +41,7 @@ class AgressiveStrategy(BattleStrategy):
         if not isinstance(monster, TransformCapability):
             raise TypeError(f"Invalid Strategy for {monster.name} "
                             f"lacks Transform capability.")
-        return f"{monster.transform()}{monster.attack()}{monster.revert()}"
+        return f"{monster.transform()}\n{monster.attack()}\n{monster.revert()}"
 
 
 class DefensiveStrategy(BattleStrategy):
@@ -52,4 +52,4 @@ class DefensiveStrategy(BattleStrategy):
         if not isinstance(monster, HealCapability):
             raise TypeError(f"Invalid Strategy for {monster.name} "
                             f"lacks Heal capability.")
-        return f"{monster.attack()}{monster.heal()}"
+        return f"{monster.attack()}\n{monster.heal()}"
