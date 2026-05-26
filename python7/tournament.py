@@ -6,14 +6,14 @@
 #  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/14 22:45:49 by vsack           #+#    #+#               #
-#  Updated: 2026/05/15 00:01:19 by vsack           ###   ########.fr        #
+#  Updated: 2026/05/22 16:23:58 by vsack           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
 from ex0 import AquaFactory, FlameFactory, CreatureFactory
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
-from ex2 import (NormalStrategy, AgressiveStrategy, DefensiveStrategy,
-                 BattleStrategy)
+from ex2 import (NormalStrategy, AgressiveStrategy,
+                 DefensiveStrategy, BattleStrategy)
 
 
 def battle(roster: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
