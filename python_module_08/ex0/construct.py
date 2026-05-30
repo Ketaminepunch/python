@@ -6,7 +6,7 @@
 #  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/17 15:56:02 by vsack           #+#    #+#               #
-#  Updated: 2026/05/17 16:24:22 by vsack           ###   ########.fr        #
+#  Updated: 2026/05/30 19:26:58 by vsack           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -22,7 +22,7 @@ def in_venv() -> bool:
 def main() -> None:
     if in_venv() is False:
         print("MATRIX STATUS: Youre still plugged in\n")
-        print(f"Current python {sys.executable}")
+        print(f"Current Python: {sys.executable}")
         print("Virtual Environment: None detected\n")
         print("WARNING: You're in the global environment!\n"
               "The machines can see everything you install.\n")
@@ -33,9 +33,9 @@ def main() -> None:
         print("Then run this program again")
     else:
         print("MATRIX STATUS: Welcome to the construct")
-        print(f"Current python {sys.executable}")
-        print(f"Virtual environment: {os.path.basename(sys.prefix)}")
-        print(f"Environment path:{os.environ.get('VIRTUAL_ENV')}")
+        print(f"Current Python: {sys.executable}")
+        print(f"Virtual Environment: {os.path.basename(sys.prefix)}")
+        print(f"Environment Path:{os.environ.get('VIRTUAL_ENV')}")
         print("\nSUCCESS: You're in an isolated environment!\n"
               "Safe to install packages without affecting the global system\n")
         print(f"Package installation path:\n{site.getsitepackages()}")

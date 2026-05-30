@@ -1,0 +1,17 @@
+# Environment variable files — NEVER commit these; they contain real secrets
+.env
+.env.local
+.env.*.local
+
+# Python virtual environments
+venv/
+matrix_env/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Byte-compiled files
+*.egg-info/
+dist/
+build/

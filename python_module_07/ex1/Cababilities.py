@@ -6,7 +6,7 @@
 #  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/14 14:42:59 by vsack           #+#    #+#               #
-#  Updated: 2026/05/14 22:12:53 by vsack           ###   ########.fr        #
+#  Updated: 2026/05/27 22:03:59 by vsack           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -68,7 +68,7 @@ class Shiftling(Creature, TransformCapability):
 
     def revert(self) -> str:
         self.transformed = False
-        return f"{self.name} returns to normal."
+        return f"{self.name} reverts to normal."
 
 
 class Morphagon(Creature, TransformCapability):

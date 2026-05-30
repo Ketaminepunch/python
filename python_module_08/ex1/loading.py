@@ -6,7 +6,7 @@
 #  By: vsack <vsack@student.42vienna.com>        +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/17 17:27:24 by vsack           #+#    #+#               #
-#  Updated: 2026/05/22 01:28:56 by vsack           ###   ########.fr        #
+#  Updated: 2026/05/30 19:49:21 by vsack           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -40,7 +40,6 @@ REQUIRED: list[tuple[str, str]] = [
 
 
 def check_dependencies() -> bool:
-    """Report installed dependencies. Returns True if all present."""
     print("Checking dependencies:")
     all_ok = True
     for name, desc in REQUIRED:
@@ -55,11 +54,16 @@ def check_dependencies() -> bool:
 
 
 def analyser() -> None:
-    print("Analyzing Matrix Data...")
-    data = np.random.random_integers(0, 9999, size=1000)
+    print("\nAnalyzing Matrix Data...")
+    print("Processing 1000 data points...")
+    data = np.random.randint(0, 5000, size=1000)
     df = pd.DataFrame(data, columns=["value"])
     print(df.describe().round(2))
-    vis = plt.plot(df)
+    print("Generating visualization...")
+    plt.plot(df)
+    plt.savefig('matrix_analysis.png')
+    print("Analysis complete!")
+    print("Results saved to: matrix_analysis.png")
 
 
 if __name__ == "__main__":
