@@ -35,13 +35,12 @@ def main() -> None:
         invalid = SpaceStation(name="invalid", station_id="ASDASD",
                                crew_size=400, power_level=67.67,
                                oxygen_level=67.67,
-                               last_maintenance=datetime(2024, 1,
+                               last_maintenance=datetime(2024, 20,
                                                          15, 10, 30, 0))
 
         print(invalid)
     except ValidationError as e:
         print(e.errors()[0]["msg"])
-        print(e.errors())
 
 
 if __name__ == "__main__":
