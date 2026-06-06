@@ -54,7 +54,7 @@ def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
     fire = partial(base_enchantment, power=50, element="Fire")
     ice = partial(base_enchantment, power=50, element="Ice")
     magma = partial(base_enchantment, power=50, element="Magma")
-    return {'fire': fire, 'ice': ice, 'magma': magma}
+    return {'fire_enchant': fire, 'ice_enchant': ice, 'magma_enchant': magma}
 
 
 if __name__ == "__main__":
@@ -63,10 +63,10 @@ if __name__ == "__main__":
     mage_names = ['Phoenix', 'Zara', 'Luna', 'Jordan', 'Sage', 'River']
     invalid_names = ['Jo', 'A', 'Alex123', 'Test@Name']
     print("Power levels:", *test_powers)
-    print(f"Max: {spell_reducer(test_powers, "max")}")
-    print(f"Min: {spell_reducer(test_powers, "min")}")
-    print(f"Product: {spell_reducer(test_powers, "multiply")}")
-    print(f"Sum: {spell_reducer(test_powers, "add")}")
+    print(f"Max: {spell_reducer(test_powers, 'max')}")
+    print(f"Min: {spell_reducer(test_powers, 'min')}")
+    print(f"Product: {spell_reducer(test_powers, 'multiply')}")
+    print(f"Sum: {spell_reducer(test_powers, 'add')}")
     enchanters = partial_enchanter(base_enchantment)
 
     print(enchanters['fire'](target="Sword"))
