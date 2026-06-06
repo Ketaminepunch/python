@@ -12,11 +12,11 @@ def base_enchantment(power: int, element: str, target: str) -> str:
 def spell_reducer(spells: list[int], operation: str) -> int:
     if not spells:
         return 0
-    operations = {
+    operations: dict[str, Callable[[Any, Any], Any]] = {
         "add": operator.add,
         "multiply": operator.mul,
-        "max": lambda a, b: a if operator.gt(a, b) else b,
-        "min": lambda a, b: a if operator.lt(a, b) else b,
+        "max": max,
+        "min": min
     }
     if operation not in operations:
         print("Unknown operation")
